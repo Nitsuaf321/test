@@ -1,0 +1,1226 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Mes SAÉ - Portfolio BUT R&amp;T</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&amp;family=Work+Sans:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="style.css" rel="stylesheet"/>
+<style>
+        .sae-accordion {
+            background: white;
+            border: 2px solid var(--border);
+            border-radius: 16px;
+            margin-bottom: 20px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .sae-accordion:hover {
+            border-color: var(--accent-light);
+            box-shadow: 0 4px 12px rgba(49, 130, 206, 0.1);
+        }
+
+        .accordion-header {
+            padding: 25px 30px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--bg-light);
+            transition: all 0.3s ease;
+            user-select: none;
+        }
+
+        .accordion-header:hover {
+            background: rgba(99, 179, 237, 0.1);
+        }
+
+        .accordion-header.active {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+        }
+
+        .accordion-header.active .accordion-title,
+        .accordion-header.active .accordion-code {
+            color: white;
+        }
+
+        .accordion-header.active .accordion-icon {
+            color: white;
+            transform: rotate(180deg);
+        }
+
+        .accordion-left {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex: 1;
+        }
+
+        .accordion-code {
+            background: white;
+            color: var(--accent);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            min-width: 120px;
+            text-align: center;
+        }
+
+        .accordion-header.active .accordion-code {
+            background: rgba(255, 255, 255, 0.3);
+            color: white;
+        }
+
+        .accordion-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--primary);
+            flex: 1;
+        }
+
+        .accordion-icon {
+            font-size: 1.5rem;
+            color: var(--accent);
+            transition: transform 0.3s ease;
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+        }
+
+        .accordion-content.active {
+            max-height: 10000px;
+        }
+
+        .accordion-body {
+            padding: 30px;
+        }
+
+        .sae-field {
+            margin-bottom: 25px;
+        }
+
+        .sae-field-label {
+            display: block;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+        }
+
+        .sae-field-value {
+            background: var(--bg-light);
+            border-left: 4px solid var(--accent);
+            border-radius: 0 12px 12px 0;
+            padding: 15px 20px;
+            color: var(--text-dark);
+            line-height: 1.8;
+            font-size: 0.97rem;
+        }
+
+        .competences-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 5px;
+        }
+
+        .competence-tag {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+            color: white;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        /* ── Système d'onglets ── */
+        .sae-tabs {
+            display: flex;
+            border-bottom: 2px solid var(--border);
+            margin-bottom: 25px;
+            gap: 4px;
+        }
+
+        .sae-tab-btn {
+            padding: 10px 20px;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-muted, #718096);
+            border-bottom: 3px solid transparent;
+            margin-bottom: -2px;
+            border-radius: 8px 8px 0 0;
+            transition: all 0.2s ease;
+        }
+
+        .sae-tab-btn:hover {
+            background: rgba(99, 179, 237, 0.08);
+            color: var(--accent);
+        }
+
+        .sae-tab-btn.active {
+            color: var(--accent);
+            border-bottom-color: var(--accent);
+            background: rgba(99, 179, 237, 0.08);
+        }
+
+        .sae-tab-panel {
+            display: none;
+        }
+
+        .sae-tab-panel.active {
+            display: block;
+        }
+
+        /* ── Auto-évaluation ── */
+        .autoeval-section {
+            margin-bottom: 28px;
+        }
+
+        .autoeval-section-title {
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 1rem;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .autoeval-section-title::before {
+            content: '';
+            display: inline-block;
+            width: 4px;
+            height: 18px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            border-radius: 2px;
+        }
+
+        .rating-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 16px;
+            background: var(--bg-light);
+            border-radius: 10px;
+            margin-bottom: 8px;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .rating-label {
+            font-size: 0.92rem;
+            color: var(--text-dark);
+            flex: 1;
+            min-width: 160px;
+        }
+
+        .rating-stars {
+            display: flex;
+            gap: 4px;
+        }
+
+        .star {
+            font-size: 1.3rem;
+            color: #CBD5E0;
+            cursor: default;
+            line-height: 1;
+        }
+
+        .star.filled {
+            color: #F6AD55;
+        }
+
+
+
+        .note-globale-display {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 18px;
+            background: linear-gradient(135deg, rgba(99,179,237,0.1), rgba(49,130,206,0.05));
+            border: 1px solid rgba(99,179,237,0.3);
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+
+        .note-globale-display .note-val {
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--accent);
+            line-height: 1;
+        }
+
+        .note-globale-display .note-label {
+            font-size: 0.85rem;
+            color: var(--text-muted, #718096);
+        }
+
+        /* ── Descriptions des preuves ── */
+        .proof-item {
+            background: var(--bg-light);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 14px 16px;
+            margin-bottom: 14px;
+        }
+
+        .proof-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .proof-item-header {
+            margin-bottom: 10px;
+        }
+
+        .proof-description-label {
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--text-muted, #718096);
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .proof-description-text {
+            background: white;
+            border-left: 3px solid var(--accent-light);
+            border-radius: 0 8px 8px 0;
+            padding: 10px 14px;
+            color: var(--text-dark);
+            font-size: 0.92rem;
+            line-height: 1.7;
+            font-style: italic;
+            color: #718096;
+        }
+
+        /* ── Images dans les traces et preuves ── */
+        .proof-item-header img {
+            max-height: none !important;
+            height: auto;
+        }
+        .proof-item {
+            overflow: visible;
+        }
+        .sae-field-value img {
+            display: block;
+            max-width: 100%;
+            width: auto;
+            max-height: 300px;
+            object-fit: contain;
+            border-radius: 10px;
+            margin: 10px 0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+        }
+
+        .sae-field-value img + img {
+            margin-top: 12px;
+        }
+
+        @media (min-width: 600px) {
+            .sae-field-value .images-grid {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 12px;
+            }
+            .sae-field-value .images-grid img {
+                flex: 1 1 calc(50% - 6px);
+                max-width: calc(50% - 6px);
+                margin: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="nav-back">
+<a class="back-button" href="index.html">
+            ← Retour à l'accueil
+        </a>
+</div>
+<div class="container">
+<div class="header">
+<div class="header-content">
+<h1>Mes SAÉ</h1>
+<p class="subtitle">Situations d'Apprentissage et d'Évaluation</p>
+</div>
+</div>
+<div class="content">
+<div class="semester-section">
+<h2 class="semester-title">Semestre 1 - Tronc Commun</h2>
+<!-- ─── SAÉ S1 - N°1 ──────────────────────────────────────── -->
+<div class="sae-accordion">
+<div class="accordion-header" onclick="toggleAccordion(this)">
+<div class="accordion-left">
+<span class="accordion-code">SAÉ 1.01</span>
+<span class="accordion-title">Se sensibiliser à l'hygiène informatique et à la cybersécurité</span>
+</div>
+<span class="accordion-icon">▼</span>
+</div>
+<div class="accordion-content">
+<div class="accordion-body"><div class="sae-tabs">
+<button class="sae-tab-btn active" onclick="switchTab(this, 'sae101-presentation')">📋 Présentation</button>
+<button class="sae-tab-btn" onclick="switchTab(this, 'sae101-autoeval')">📊 Analyse &amp; Auto-évaluation</button>
+</div><div class="sae-tab-panel active" id="sae101-presentation">
+<div class="sae-field">
+<span class="sae-field-label">Contexte et objectifs</span>
+<div class="sae-field-value">
+                                    Dans le cadre de la SAÉ 1.01 « Se sensibiliser à l'hygiène informatique et à la cybersécurité », l'objectif était de découvrir les bonnes pratiques de sécurité numérique et de comprendre les bases de la cybersécurité.
+                                    Le projet reposait sur plusieurs activités : une autoformation via le MOOC de l'ANSSI, un travail de recherche en groupe sur une thématique liée à la cybersécurité, ainsi qu'une mise en pratique sous forme de TP et de défis type Capture The Flag (CTF).
+                                    L'objectif final était d'être capable de sensibiliser des utilisateurs non spécialistes aux bonnes pratiques de sécurité informatique.
+                                </div>
+</div>
+<div class="sae-field">
+<span class="sae-field-label">Compétences mobilisées</span>
+<div class="competences-tags">
+<span class="competence-tag">Sensibilisation à la cybersécurité</span>
+<span class="competence-tag">Recherche et analyse d'informations techniques</span>
+<span class="competence-tag">Travail collaboratif en groupe</span>
+<span class="competence-tag">Présentation orale et communication technique</span>
+<span class="competence-tag">Outils de sécurité informatique sous Linux/Debian</span>
+<span class="competence-tag">Mécanismes de sécurité réseau</span>
+<span class="competence-tag">Veille et bonnes pratiques en hygiène numérique</span>
+</div>
+</div>
+<div class="sae-field">
+<span class="sae-field-label">Apprentissages Critiques (AC)</span>
+<div class="sae-field-value">
+<strong>RT1 – Administrer les réseaux et l'Internet — Niveau 1 – Assister l'administrateur du réseau</strong><br/><br/>
+<strong>AC11.02</strong> Comprendre l'architecture et les fondements des systèmes numériques, les principes du codage de l'information, des communications et de l'Internet
+                                    → Compréhension du fonctionnement des systèmes numériques et des bases de la cybersécurité.<br/><br/>
+<strong>AC11.04</strong> Maîtriser les rôles et les principes fondamentaux des systèmes d'exploitation afin d'interagir avec ceux-ci pour la configuration et l'administration des réseaux et services fournis
+                                    → Utilisation d'environnements Linux et découverte des outils réseau et systèmes.<br/><br/>
+<strong>AC11.05</strong> Identifier les dysfonctionnements du réseau local et savoir les signaler
+                                    → Identification de vulnérabilités et compréhension des risques liés à la sécurité informatique.
+                                </div>
+</div>
+<div class="sae-field">
+<span class="sae-field-label">Situation et rôle</span>
+<div class="sae-field-value">
+                                    J'ai travaillé au sein d'un groupe chargé d'étudier une thématique liée à la cybersécurité (mots de passe, accès SSH ou découverte réseau selon le sujet choisi).
+                                    Mon rôle consistait à effectuer des recherches techniques, tester différents outils de sécurité, participer à la rédaction d'une notice collaborative, préparer une présentation orale, et mettre en pratique certaines notions lors des TP et exercices CTF.
+                                </div>
+</div>
+<div class="sae-field">
+<span class="sae-field-label">Démarche et actions</span>
+<div class="sae-field-value">
+                                    Suivi du MOOC de l'ANSSI sur l'hygiène numérique — Réalisation des quiz et préparation du QCM final — Constitution du groupe et répartition des tâches — Recherche documentaire sur la thématique attribuée — Expérimentation d'outils de cybersécurité sous Debian/Linux — Rédaction d'un document technique collaboratif — Préparation de supports de présentation (diapositives) — Présentation orale du travail réalisé — Participation aux exercices pratiques de type Capture The Flag
+                                </div>
+</div>
+<div class="sae-field">
+<span class="sae-field-label">Déroulé du projet</span>
+<div class="sae-field-value">
+                                    Le projet s’est déroulé de telle sorte que nous avons réparti les recherches sur le protocole SSH afin de les regrouper ensuite dans un diaporama pour préparer le passage à l’oral.
+
+                                    En parallèle, nous avons travaillé sur le MOOC de l’ANSSI afin d’obtenir la certification.
+                                </div>
+</div>
+<div class="sae-field">
+<span class="sae-field-label">Résultats obtenus</span>
+<div class="sae-field-value">
+                                    Le projet a permis d'acquérir les bases de l'hygiène informatique et de la cybersécurité. Le groupe a produit une documentation technique claire et une présentation orale expliquant les recherches et expérimentations réalisées. Les activités pratiques ont permis de mieux comprendre les mécanismes de sécurité et les risques liés aux systèmes informatiques.
+                                </div>
+</div>
+<div class="sae-field">
+<span class="sae-field-label">Points forts</span>
+<div class="sae-field-value">
+                                    Travail collaboratif efficace — Découverte concrète des outils de cybersécurité — Bonne compréhension des bonnes pratiques numériques — Expérience pratique grâce aux exercices CTF — Développement des compétences de communication orale — Sensibilisation aux enjeux de sécurité informatique
+                                </div>
+</div>
+<div class="sae-field">
+<span class="sae-field-label">Difficultés rencontrées</span>
+<div class="sae-field-value">
+                                    Cette SAÉ nous a montré à quel point nous étions débutants, n’étant pas du tout familiarisés avec le matériel et le système d’exploitation utilisés. Le manque d’expérience nous a fait défaut.
+                                </div>
+</div>
+<div class="sae-field">
+<span class="sae-field-label">Apprentissages et compétences développées</span>
+<div class="sae-field-value">
+                                    Cette SAÉ m'a permis de développer mes connaissances en cybersécurité et en hygiène numérique. J'ai appris à adopter de bonnes pratiques de sécurité, comprendre les risques informatiques courants, utiliser des outils réseau et de sécurité sous Linux, travailler efficacement en groupe, présenter des informations techniques à l'oral, et réaliser des recherches techniques de manière autonome.
+                                </div>
+</div>
+<div class="sae-field">
+<span class="sae-field-label">Traces et preuves</span>
+<div class="sae-field-value">
+<div class="proof-item">
+  <div class="proof-item-header proof-item-link">
+    <small><a href="Documents/SSH_diapo_LOT_B.pdf" download="SSH_diapo_LOT_B.pdf">⬇ Télécharger le diaporama SSH</a></small>
+  </div>
+  <span class="proof-description-label">📝 Description</span>
+  <div class="proof-description-text">Comme vous pouvez le voir sur le diapo les Slide 5 et 13 se ressemble du à un manque de communication les deux personnes concerner on fais la même chose alors que la slide 13 aurais du traiter d'un autre sujet.</div>
+</div>
+</div>
+</div>
+</div><div class="sae-tab-panel" id="sae101-autoeval">
+<div class="autoeval-section">
+<div class="autoeval-section-title">Évaluation des compétences</div>
+<div class="rating-row">
+<span class="rating-label">Maîtrise technique</span>
+<div class="rating-stars" data-key="sae101-maitrise" data-rating="4">
+<span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+</div>
+</div>
+<div class="rating-row">
+<span class="rating-label">Investissement personnel</span>
+<div class="rating-stars" data-key="sae101-investissement" data-rating="5">
+<span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+</div>
+</div>
+<div class="rating-row">
+<span class="rating-label">Travail en équipe</span>
+<div class="rating-stars" data-key="sae101-equipe" data-rating="3">
+<span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+</div>
+</div>
+<div class="rating-row">
+<span class="rating-label">Qualité du rendu</span>
+<div class="rating-stars" data-key="sae101-qualite" data-rating="4">
+<span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+</div>
+</div>
+</div>
+<div class="autoeval-section">
+<div class="autoeval-section-title">Analyse réflexive</div>
+<div class="sae-field">
+<span class="sae-field-label">Ce que j'ai bien réussi</span>
+<div class="sae-field-value">
+    Ce que j’ai bien réussi, c’est trouver et utiliser les informations sur les options que comporte le protocole SSH.
+</div>
+</div>
+<div class="sae-field">
+<span class="sae-field-label">Ce que je ferais différemment</span>
+<div class="sae-field-value">
+    Ce que je ferais différemment, c’est davantage aider mes camarades sur leur partie, ayant bien réussi la mienne efficacement et rapidement.
+</div>
+</div>
+<div class="sae-field">
+<span class="sae-field-label">Axes de progression identifiés</span>
+<div class="sae-field-value">
+    L’axe à travailler est le travail en équipe, notamment aider mes camarades même lorsqu’ils ne le demandent pas.
+</div>
+</div>
+</div>
+</div></div>
+</div>
+</div>
+<!-- ─── Fin SAÉ S1 - N°1 ──────────────────────────────────── -->
+<!-- ─── SAÉ S1 - N°2 ──────────────────────────────────────── -->
+<div class="sae-accordion">
+<div class="accordion-header" onclick="toggleAccordion(this)">
+<div class="accordion-left">
+<span class="accordion-code">SAÉ 1.02</span>
+<span class="accordion-title">S'initier aux réseaux informatiques</span>
+</div>
+<span class="accordion-icon">▼</span>
+</div>
+<div class="accordion-content">
+<div class="accordion-body"><div class="sae-tabs">
+<button class="sae-tab-btn active" onclick="switchTab(this, 'sae102-presentation')">📋 Présentation</button>
+<button class="sae-tab-btn" onclick="switchTab(this, 'sae102-autoeval')">📊 Analyse &amp; Auto-évaluation</button>
+</div><div class="sae-tab-panel active" id="sae102-presentation">
+<div class="sae-field">
+<span class="sae-field-label">Contexte et objectifs</span>
+<div class="sae-field-value">
+                                    Dans le cadre de la SAÉ 1.02 « S'initier aux réseaux informatiques », l'objectif était de concevoir et mettre en œuvre une infrastructure réseau complète pour une entreprise fictive nommée Fibre&amp;Company.
+                                    L'entreprise souhaitait moderniser son réseau afin d'améliorer ses performances, sa sécurité et sa capacité à accueillir un plus grand nombre d'utilisateurs.
+                                    Le projet consistait à configurer des équipements réseau (switchs, routeur, serveur Debian virtualisé), mettre en place des VLANs, des services réseau et différents mécanismes de sécurité, puis vérifier le bon fonctionnement de l'ensemble de l'infrastructure.
+                                </div>
+</div>
+<div class="sae-field">
+<span class="sae-field-label">Compétences mobilisées</span>
+<div class="competences-tags">
+<span class="competence-tag">Configuration de réseaux locaux (LAN)</span>
+<span class="competence-tag">Administration de switchs et routeurs Cisco</span>
+<span class="competence-tag">Mise en œuvre de VLANs et routage inter-VLAN</span>
+<span class="competence-tag">Administration système sous Linux/Debian</span>
+<span class="competence-tag">Gestion des services réseau (DHCP, DNS, SMB, Apache, SSH)</span>
+<span class="competence-tag">Virtualisation et gestion de machines virtuelles</span>
+<span class="competence-tag">Sécurisation des équipements réseau</span>
+</div>
+</div>
+<div class="sae-field">
+<span class="sae-field-label">Apprentissages Critiques (AC)</span>
+<div class="sae-field-value">
+<strong>RT1 – Administrer les réseaux et l'Internet — Niveau 1 – Assister l'administrateur du réseau</strong><br/><br/>
+<strong>AC11.01</strong> Maîtriser les lois fondamentales de l'électricité afin d'intervenir sur des équipements de réseaux et télécommunications
+                                    → Compréhension du fonctionnement physique des équipements réseau.<br/><br/>
+<strong>AC11.02</strong> Comprendre l'architecture et les fondements des systèmes numériques, les principes du codage de l'information, des communications et de l'Internet
+                                    → Étude de l'architecture d'un réseau d'entreprise et des communications réseau.<br/><br/>
+<strong>AC11.03</strong> Configurer les fonctions de base du réseau local
+                                    → Configuration des VLANs, du routage, des switchs et des services réseau.<br/><br/>
+<strong>AC11.04</strong> Maîtriser les rôles et les principes fondamentaux des systèmes d'exploitation afin d'interagir avec ceux-ci pour la configuration et l'administration des réseaux et services fournis
+                                    → Administration d'un serveur Debian et configuration des services réseau.<br/><br/>
+<strong>AC11.05</strong> Identifier les dysfonctionnements du réseau local et savoir les signaler
+                                    → Réalisation de tests réseau et diagnostic des problèmes de connectivité.<br/><br/>
+<strong>AC11.06</strong> Installer un poste client, expliquer la procédure mise en place
+                                    → Installation et configuration des postes et machines virtuelles.
+                                </div>
+</div>
+<div class="sae-field">
+<span class="sae-field-label">Situation et rôle</span>
+<div class="sae-field-value">
+                                    J'ai travaillé en tant qu'administrateur réseau junior chargé de déployer un prototype d'infrastructure réseau pour l'entreprise Fibre&amp;Company.
+                                    Mon rôle consistait à configurer les équipements réseau, mettre en place les VLANs et le routage, installer et administrer le serveur Debian, configurer les services réseau, renforcer la sécurité de l'infrastructure, et réaliser des tests de fonctionnement et de performances.
+                                </div>
+</div>
+<div class="sae-field">
+<span class="sae-field-label">Démarche et actions</span>
+<div class="sae-field-value">
+                                    Étude du cahier des charges et de l'architecture réseau demandée — Création du plan d'adressage IPv4 et découpage des VLANs — Configuration des switchs Cisco (VLAN, RSTP, agrégation de liens, DHCP) — Mise en place du routage inter-VLAN et du routage vers Internet — Installation d'une machine virtuelle Debian sans interface graphique — Partitionnement et configuration des systèmes de fichiers Linux — Création automatisée des comptes utilisateurs — Installation et configuration des services : DHCP, DNS (Bind9), partage SMB, serveur web Apache2, SSH sécurisé — Mise en œuvre des mécanismes de sécurité réseau : désactivation de Telnet et HTTP, sécurisation SSH, VLAN natif pour ports inutilisés, protections sur les switchs — Réalisation des tests réseau et vérification des fonctionnalités
+                                </div>
+</div>
+<div class="sae-field">
+<span class="sae-field-label">Déroulé du projet</span>
+<div class="sae-field-value">
+                                    Le déroulement du projet SEA-1.02 a débuté par une analyse détaillée du projet afin de mieux répartir le travail. Une fois cela fait, chacun a pris en charge un élément à programmer, comme le routeur, les switchs, les switchs L2/L3 ainsi que le serveur Proxmox avec la machine virtuelle installée dessus.
+
+                                    Nous avons mis la VM un peu de côté au début afin d’être sûrs d’avoir une infrastructure réseau fonctionnelle. Ensuite, j’ai directement mis en place le service TFTP sur la VM, ce qui nous permettait de sauvegarder les configurations du routeur et des switchs, car sinon il aurait fallu tout refaire à chaque fois.
+
+                                    Une fois l’architecture réseau terminée et fonctionnelle, nous l’avons connectée à la box Internet de l’IUT afin que n’importe quel PC de notre réseau puisse avoir accès à Internet.
+
+                                    Nous avons terminé par finaliser la configuration de la VM et essayer de la connecter à notre réseau. Enfin, la notation de la maquette a eu lieu juste après, ce qui a marqué la fin du projet.
+                                </div>
+</div>
+<div class="sae-field">
+<span class="sae-field-label">Résultats obtenus</span>
+<div class="sae-field-value">
+                                    Le projet a permis de mettre en place une infrastructure réseau fonctionnelle et sécurisée répondant aux besoins de l'entreprise fictive. Les VLANs, le routage inter-VLAN et les différents services réseau ont été configurés avec succès. Le serveur Debian a été correctement déployé et les mécanismes de sécurité ont renforcé la protection de l'infrastructure. Les différents tests réalisés ont permis de valider le bon fonctionnement du réseau et des services.
+                                </div>
+</div>
+<div class="sae-field">
+<span class="sae-field-label">Points forts</span>
+<div class="sae-field-value">
+                                    Infrastructure réseau complète et cohérente — Bonne segmentation du réseau avec les VLANs — Mise en œuvre de services réseau variés — Utilisation concrète des équipements Cisco — Renforcement de la sécurité réseau — Découverte approfondie de l'administration Linux — Validation du projet grâce à des tests techniques
+                                </div>
+</div>
+<div class="sae-field">
+<span class="sae-field-label">Difficultés rencontrées</span>
+<div class="sae-field-value">
+                                    Cette SAÉ nous a montré à quel point nous étions débutants. Le manque de connaissances, notamment sur l’utilisation des machines virtuelles (VM) et des services utilisés comme SAMBA, nous a énormément mis en difficulté. Il y a également le fait d’utiliser des serveurs Proxmox, qui ont nécessité une installation particulière ainsi qu’un câblage spécifique.
+                                </div>
+</div>
+<div class="sae-field">
+<span class="sae-field-label">Apprentissages et compétences développées</span>
+<div class="sae-field-value">
+                                    Cette SAÉ m'a permis de développer mes compétences en réseaux et en administration système. J'ai appris à configurer des switchs et routeurs Cisco, mettre en place des VLANs et du routage, administrer un serveur Debian, configurer des services réseau professionnels, sécuriser une infrastructure informatique, réaliser des tests de connectivité et de performances, et travailler de manière plus autonome sur un projet technique complexe.
+                                </div>
+</div>
+<div class="sae-field">
+<span class="sae-field-label">Traces et preuves</span>
+<div class="sae-field-value">
+<div class="proof-item">
+  <div class="proof-item-header" style="display:flex;gap:12px;flex-wrap:wrap;">
+    <img alt="Baie" src="lien_inter_baie.jpg" style="flex:1;min-width:0;max-height:200px;width:100%;object-fit:contain;border-radius:8px;"/>
+    <img alt="Serveur Proxmox" src="serveur_promox.jpg" style="flex:1;min-width:0;max-height:200px;width:100%;object-fit:contain;border-radius:8px;"/>
+  </div>
+  <span class="proof-description-label">📝 Description</span>
+  <div class="proof-description-text">La difficulté sur cette sae à était la VM car longue et compliqué mais ce qui m'a vraiment mis en difficulté c'est le branchement à réaliser au niveau du serveur PROMOX. Car au début du projet les profs m'ont montrer un branchement pour avoir en un point la box et PROMOX en même temps au meême endroit ce qui était parfait pour le début du projet. Sauf qu'arriver à un certain endroit du projet il faut que le branchement es uniquement le serveur PROMOX et c'est nottre routeur qui dois être connecter à la box. C'est le routeur qui apporte tous l'internet à la maquette y compris pour le serveur PROMOX. Cependant il fallait faire un cablage trés préçis qui était expliquer dans la documentation des serveurs PROMOX mais c'était pas clair du tous le shéma de montage corresponder pas du tous, j'ai donc pas reussi cette partie.</div>
+</div>
+</div>
+</div>
+</div><div class="sae-tab-panel" id="sae102-autoeval">
+<div class="autoeval-section">
+<div class="autoeval-section-title">Évaluation des compétences</div>
+<div class="rating-row">
+<span class="rating-label">Maîtrise technique</span>
+<div class="rating-stars" data-key="sae102-maitrise" data-rating="4">
+<span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+</div>
+</div>
+<div class="rating-row">
+<span class="rating-label">Investissement personnel</span>
+<div class="rating-stars" data-key="sae102-investissement" data-rating="5">
+<span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+</div>
+</div>
+<div class="rating-row">
+<span class="rating-label">Travail en équipe</span>
+<div class="rating-stars" data-key="sae102-equipe" data-rating="5">
+<span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+</div>
+</div>
+<div class="rating-row">
+<span class="rating-label">Qualité du rendu</span>
+<div class="rating-stars" data-key="sae102-qualite" data-rating="4">
+<span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+</div>
+</div>
+</div>
+<div class="autoeval-section">
+<div class="autoeval-section-title">Analyse réflexive</div>
+<div class="sae-field">
+<span class="sae-field-label">Ce que j'ai bien réussi</span>
+<div class="sae-field-value">
+    Ce que j’ai bien réussi, c’est le câblage du mini-système réseau d’entreprise, qui s’est avéré complexe mais réalisable assez facilement en prenant suffisamment de recul sur la maquette réalisée.
+</div>
+</div>
+<div class="sae-field">
+<span class="sae-field-label">Ce que je ferais différemment</span>
+<div class="sae-field-value">
+    Ce que je ferais différemment, c’est d’attaquer la partie VM plus tôt et plus sérieusement, car je ne réalisais pas la quantité de travail à fournir pour la rendre opérationnelle avec tout ce qui était demandé.
+</div>
+</div>
+<div class="sae-field">
+<span class="sae-field-label">Axes de progression identifiés</span>
+<div class="sae-field-value">
+    Il faut que je réfléchisse mieux à la répartition des efforts fournis sur les différentes tâches à réaliser lors d’un projet.
+Il faut que je prenne plus de recul afin de mieux concentrer mes efforts aux bons endroits.
+</div>
+</div>
+</div>
+</div></div>
+</div>
+</div>
+<!-- ─── Fin SAÉ S1 - N°2 ──────────────────────────────────── -->
+<!-- ─── SAÉ S1 - N°3 ──────────────────────────────────────── -->
+<div class="sae-accordion">
+<div class="accordion-header" onclick="toggleAccordion(this)">
+<div class="accordion-left">
+<span class="accordion-code">SAÉ 1.03</span>
+<span class="accordion-title">Découverte d'un dispositif de transmission</span>
+</div>
+<span class="accordion-icon">▼</span>
+</div>
+<div class="accordion-content">
+<div class="accordion-body"><div class="sae-tabs">
+<button class="sae-tab-btn active" onclick="switchTab(this, 'sae103-presentation')">📋 Présentation</button>
+<button class="sae-tab-btn" onclick="switchTab(this, 'sae103-autoeval')">📊 Analyse &amp; Auto-évaluation</button>
+</div><div class="sae-tab-panel active" id="sae103-presentation">
+<div class="sae-field">
+<span class="sae-field-label">Contexte et objectifs</span>
+<div class="sae-field-value">
+                                    Dans le cadre de la SAÉ 1.03 « Découverte d'un dispositif de transmission », l'objectif était d'étudier les supports physiques de transmission utilisés dans les réseaux : les câbles cuivre et la fibre optique.
+                                    Le projet avait pour but de comprendre les méthodes de mesure et de caractérisation des supports de transmission, comme cela est réalisé dans le domaine professionnel avec des équipements de certification réseau.
+                                    Les travaux réalisés combinaient des manipulations pratiques, des mesures physiques, une étude documentaire, la rédaction de rapports techniques, et un QCM final portant sur l'ensemble de la SAÉ.
+                                </div>
+</div>
+<div class="sae-field">
+<span class="sae-field-label">Compétences mobilisées</span>
+<div class="competences-tags">
+<span class="competence-tag">Analyse de signaux et mesures physiques</span>
+<span class="competence-tag">Utilisation d'appareils de mesure électroniques</span>
+<span class="competence-tag">Étude des supports de transmission cuivre et fibre optique</span>
+<span class="competence-tag">Calculs de propagation et d'atténuation</span>
+<span class="competence-tag">Lecture et exploitation de documents techniques</span>
+<span class="competence-tag">Rédaction de rapports techniques</span>
+<span class="competence-tag">Travail en groupe et expérimentation pratique</span>
+</div>
+</div>
+<div class="sae-field">
+<span class="sae-field-label">Apprentissages Critiques (AC)</span>
+<div class="sae-field-value">
+<strong>RT2 – Connecter les entreprises et les usagers — Niveau 1 : Découvrir les transmissions et la ToIP</strong><br/><br/>
+<strong>AC12.01</strong> Mesurer et analyser les signaux
+                                    → Réalisation de mesures avec un oscilloscope, un analyseur DTF et des outils de photométrie pour analyser les caractéristiques des supports de transmission.<br/><br/>
+<strong>AC12.02</strong> Caractériser des systèmes de transmission élémentaires et découvrir la modélisation mathématique de leur fonctionnement
+                                    → Calcul de la longueur des câbles, mesure du temps de propagation, détermination de la NVP et étude de l'atténuation des liaisons fibre optique.<br/><br/>
+<strong>AC12.03</strong> Déployer des supports de transmission
+                                    → Manipulation et câblage de liaisons cuivre et fibre optique lors des travaux pratiques et du projet.<br/><br/>
+<strong>AC12.05</strong> Communiquer avec un tiers (client, collaborateur...) et adapter son discours et sa langue à son interlocuteur
+                                    → Rédaction de rapports techniques clairs et présentation des résultats de mesures obtenus pendant les expérimentations.
+                                </div>
+</div>
+<div class="sae-field">
+<span class="sae-field-label">Situation et rôle</span>
+<div class="sae-field-value">
+                                    J'ai travaillé au sein d'un groupe chargé de réaliser des mesures et d'analyser différents supports de transmission réseau.
+                                    Mon rôle consistait à effectuer les manipulations pratiques, utiliser les appareils de mesure, calculer les caractéristiques physiques des liaisons, analyser les résultats obtenus, et participer à la rédaction des rapports techniques.
+                                </div>
+</div>
+<div class="sae-field">
+<span class="sae-field-label">Démarche et actions</span>
+<div class="sae-field-value">
+                                    Étude des documents techniques et préparation d'une fiche de synthèse — Réalisation de mesures DTF sur des câbles coaxiaux et Ethernet — Utilisation d'un GBF et d'un oscilloscope pour mesurer le temps de propagation des impulsions — Calcul de la longueur des câbles et de leur NVP — Réalisation d'une liaison fibre optique — Mesure de l'atténuation par photométrie sur fibre optique — Analyse et comparaison des résultats obtenus — Rédaction des deux rapports techniques demandés — Préparation du QCM final sur les notions étudiées
+                                </div>
+</div>
+<div class="sae-field">
+<span class="sae-field-label">Déroulé du projet</span>
+<div class="sae-field-value">
+                                    Le déroulement du projet s’est fait de manière à ce que nous réalisions le TP en priorité afin de réviser pour le contrôle final avec les heures restantes. Nous avons directement commencé par le TP sur la fibre, car le matériel était disponible.
+
+                                    Nous avons effectué les mesures sur la fibre et appris à manipuler le matériel afin de comparer les valeurs obtenues avec nos calculs théoriques d’atténuation du signal. Une fois cela fait, nous avons réalisé les mesures avec les câbles Ethernet RJ45.
+
+                                    Nous avons ensuite rédigé les comptes rendus puis révisé avec les heures restantes pour le contrôle final.
+                                </div>
+</div>
+<div class="sae-field">
+<span class="sae-field-label">Résultats obtenus</span>
+<div class="sae-field-value">
+                                    Le projet a permis de comprendre les principes de transmission sur câble cuivre et fibre optique ainsi que les méthodes de mesure utilisées dans le domaine professionnel.
+                                    Les manipulations réalisées ont permis d'obtenir des mesures cohérentes concernant la longueur des câbles, la vitesse de propagation des signaux et l'atténuation d'une liaison fibre optique.
+                                    Les rapports techniques ont synthétisé les résultats et les méthodes utilisées pendant les expérimentations.
+                                </div>
+</div>
+<div class="sae-field">
+<span class="sae-field-label">Points forts</span>
+<div class="sae-field-value">
+                                    Mise en pratique concrète des notions théoriques — Utilisation d'appareils de mesure professionnels — Bonne compréhension des supports de transmission — Développement des compétences d'analyse et de calcul — Travail collaboratif efficace — Rédaction de rapports techniques structurés
+                                </div>
+</div>
+<div class="sae-field">
+<span class="sae-field-label">Difficultés rencontrées</span>
+<div class="sae-field-value">
+                                    Cette SAÉ nous a montré notre manque de connaissances sur la fibre optique et ses manipulations si précises et délicates. Il y a aussi eu un problème d’organisation, car nous avons dû dénuder les câbles Ethernet par nos propres moyens. Ce n’était pas compliqué en soi, mais cela nous a fait perdre du temps qui n’était pas prévu.
+                                </div>
+</div>
+<div class="sae-field">
+<span class="sae-field-label">Apprentissages et compétences développées</span>
+<div class="sae-field-value">
+                                    Cette SAÉ m'a permis de développer mes compétences en transmission et en mesures réseau. J'ai appris à utiliser un oscilloscope et un analyseur DTF, mesurer les caractéristiques d'un câble réseau, analyser la propagation des signaux, comprendre les principes de la fibre optique, interpréter des résultats de mesures techniques, et rédiger des rapports techniques professionnels.
+                                </div>
+</div>
+<div class="sae-field">
+<span class="sae-field-label">Traces et preuves</span>
+<div class="sae-field-value">
+<div class="proof-item">
+  <div class="proof-item-header proof-item-link">
+    <small><a href="Documents/compte_rendu_tp_ethernet_SAE13.pdf" download="compte_rendu_tp_ethernet_SAE13.pdf">⬇ Télécharger le rapport DTF</a></small>
+  </div>
+  <span class="proof-description-label">📝 Description</span>
+  <div class="proof-description-text">Comme vous pouvez le voir dans le compte rendu ethernet les cablage réaliser est plutot compliquer car il faut dénuder les cables et choisir la bonne paire et surtout la même car sinon ça marche pas, c'est pas simple.</div>
+</div>
+<div class="proof-item">
+  <div class="proof-item-header proof-item-link">
+    <small><a href="Documents/compte_rendu_tp_ethernet_SAE13.pdf" download="compte_rendu_tp_ethernet_SAE13.pdf">⬇ Télécharger le compte rendu fibre optique</a></small>
+  </div>
+  <span class="proof-description-label">📝 Description</span>
+  <div class="proof-description-text">Ce qui est compliquer c'est faire le montage où il faut tous le temps nettoyer car à la moindre saleter ou impurter gène le signal et donne de movaise mesure. Dans notre cas nous avions pas d'exemple donc on ne savais pas si le montage était mauvais avec nos mesures ou si nos calcul était mauvais. On a donc comparé avec d'autre groupe pour voir que le montage était bien mais certaine j'artierre fibre était trop sale.</div>
+</div>
+</div>
+</div>
+</div><div class="sae-tab-panel" id="sae103-autoeval">
+<div class="autoeval-section">
+<div class="autoeval-section-title">Évaluation des compétences</div>
+<div class="rating-row">
+<span class="rating-label">Maîtrise technique</span>
+<div class="rating-stars" data-key="sae103-maitrise" data-rating="4">
+<span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+</div>
+</div>
+<div class="rating-row">
+<span class="rating-label">Investissement personnel</span>
+<div class="rating-stars" data-key="sae103-investissement" data-rating="5">
+<span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+</div>
+</div>
+<div class="rating-row">
+<span class="rating-label">Travail en équipe</span>
+<div class="rating-stars" data-key="sae103-equipe" data-rating="4">
+<span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+</div>
+</div>
+<div class="rating-row">
+<span class="rating-label">Qualité du rendu</span>
+<div class="rating-stars" data-key="sae103-qualite" data-rating="5">
+<span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+</div>
+</div>
+</div>
+<div class="autoeval-section">
+<div class="autoeval-section-title">Analyse réflexive</div>
+<div class="sae-field">
+<span class="sae-field-label">Ce que j'ai bien réussi</span>
+<div class="sae-field-value">
+    Ce que j’ai bien réussi, c’est de mettre en pratique les connaissances mises à disposition pour apprendre comment fonctionnent la fibre et le câble RJ45 (Ethernet).
+</div>
+</div>
+<div class="sae-field">
+<span class="sae-field-label">Ce que je ferais différemment</span>
+<div class="sae-field-value">
+    Ce que je ferais différemment, c’est déléguer un peu plus de tâches à mes camarades.
+</div>
+</div>
+<div class="sae-field">
+<span class="sae-field-label">Axes de progression identifiés</span>
+<div class="sae-field-value">
+    L’axe de progression est le travail en équipe, dans lequel, durant cette SAE, j’aurais dû davantage partager le travail et en faire moins moi-même.
+</div>
+</div>
+</div>
+</div></div>
+</div>
+</div>
+<!-- ─── Fin SAÉ S1 - N°3 ──────────────────────────────────── -->
+<!-- ─── SAÉ S1 - N°4 ──────────────────────────────────────── -->
+<div class="sae-accordion">
+<div class="accordion-header" onclick="toggleAccordion(this)">
+<div class="accordion-left">
+<span class="accordion-code">SAÉ 1.04</span>
+<span class="accordion-title">Créer un site Web multipage</span>
+</div>
+<span class="accordion-icon">▼</span>
+</div>
+<div class="accordion-content">
+<div class="accordion-body"><div class="sae-tabs">
+<button class="sae-tab-btn active" onclick="switchTab(this, 'sae104-presentation')">📋 Présentation</button>
+<button class="sae-tab-btn" onclick="switchTab(this, 'sae104-autoeval')">📊 Analyse &amp; Auto-évaluation</button>
+</div><div class="sae-tab-panel active" id="sae104-presentation">
+<div class="sae-field">
+<span class="sae-field-label">Contexte et objectifs</span>
+<div class="sae-field-value">
+                                    Dans le cadre de la SAÉ 1.04, l'objectif était de concevoir et développer un site Web multipage en HTML et CSS. Le thème du site étant libre, cela permettait de créer un projet personnel autour d'un centre d'intérêt (sport, jeux vidéo, musique, voyage, etc.).
+                                    Le projet devait respecter plusieurs contraintes techniques : création d'un site responsive, utilisation de Flexbox et/ou CSS Grid, respect des standards du Web (validation W3C), prise en compte de l'accessibilité numérique (WCAG 2.0 AA) et mise en ligne du projet via GitHub Pages.
+                                </div>
+</div>
+<div class="sae-field">
+<span class="sae-field-label">Compétences mobilisées</span>
+<div class="competences-tags">
+<span class="competence-tag">Développement Web HTML5 et CSS3</span>
+<span class="competence-tag">Mise en page responsive (Flexbox / CSS Grid)</span>
+<span class="competence-tag">Gestion de versions avec Git et GitHub</span>
+<span class="competence-tag">Hébergement sur GitHub Pages</span>
+<span class="competence-tag">Normes du Web et accessibilité</span>
+<span class="competence-tag">Conception d'interface utilisateur</span>
+<span class="competence-tag">Organisation d'un projet Web multipage</span>
+</div>
+</div>
+<div class="sae-field">
+<span class="sae-field-label">Apprentissages Critiques (AC)</span>
+<div class="sae-field-value">
+<strong>RT3 – Créer des outils et des applications informatiques pour les R&amp;T — Niveau 1 – S'intégrer dans un service informatique</strong><br/><br/>
+<strong>AC13.01</strong> Utiliser un système informatique et ses outils
+                                    → Utilisation d'éditeurs de code, GitHub et outils de validation Web.<br/><br/>
+<strong>AC13.04</strong> Connaître l'architecture et les technologies d'un site Web
+                                    → Développement d'un site Web responsive en HTML/CSS avec mise en page moderne.
+                                </div>
+</div>
+<div class="sae-field">
+<span class="sae-field-label">Situation et rôle</span>
+<div class="sae-field-value">
+                                    J'ai travaillé en tant que développeur Web débutant chargé de concevoir et réaliser un site Web complet.
+                                    Mon rôle consistait à imaginer le design du site, développer les différentes pages, intégrer les contenus, rendre le site responsive, tester et corriger les erreurs HTML/CSS, et publier le projet sur GitHub Pages.
+                                </div>
+</div>
+<div class="sae-field">
+<span class="sae-field-label">Démarche et actions</span>
+<div class="sae-field-value">
+                                    Choix du thème et définition de l'arborescence du site — Réalisation des maquettes et choix de la charte graphique — Création des pages HTML : accueil, contenu principal et page "À propos" — Mise en forme avec CSS en utilisant Flexbox et CSS Grid — Ajout d'animations CSS pour améliorer l'expérience utilisateur — Adaptation du site aux différents formats d'écran (mobile, tablette, ordinateur) — Vérification de la validité du code avec les outils W3C — Mise en ligne du projet via GitHub Pages — Gestion du projet avec plusieurs commits Git explicites
+                                </div>
+</div>
+<div class="sae-field">
+<span class="sae-field-label">Déroulé du projet</span>
+<div class="sae-field-value">
+                                    Le projet s’est déroulé assez rapidement et en lien avec la ressource R115 Gestion de projet. J’ai commencé par analyser le projet, où j’ai vite compris qu’il fallait bien préparer à l’avance certains livrables comme le Trello et le diagramme de Gantt. J’ai ensuite pu réfléchir au thème de mon site et ainsi le réaliser. J’ai créé mon site tout en notant mon avancée sur le Trello, jusqu’à terminer le site et tout rendre en finalisant par la réalisation d’un compte rendu.
+                                </div>
+</div>
+<div class="sae-field">
+<span class="sae-field-label">Résultats obtenus</span>
+<div class="sae-field-value">
+                                    Le projet final est un site Web multipage fonctionnel, responsive et accessible. Le site respecte les standards HTML/CSS, possède une navigation claire et une identité visuelle cohérente. Les différentes pages s'affichent correctement sur plusieurs appareils et le projet a été publié en ligne via GitHub Pages.
+                                </div>
+</div>
+<div class="sae-field">
+<span class="sae-field-label">Points forts</span>
+<div class="sae-field-value">
+                                    Interface moderne et agréable visuellement — Site responsive adapté à tous les écrans — Utilisation correcte de Flexbox/CSS Grid — Code organisé et structuré — Respect des normes du Web et de l'accessibilité — Gestion de projet avec GitHub et commits réguliers
+                                </div>
+</div>
+<div class="sae-field">
+<span class="sae-field-label">Difficultés rencontrées</span>
+<div class="sae-field-value">
+                                    Cette SAÉ nous a montré la difficulté d’animer un site sans avoir de connaissances en Java.
+                                </div>
+</div>
+<div class="sae-field">
+<span class="sae-field-label">Apprentissages et compétences développées</span>
+<div class="sae-field-value">
+                                    Cette SAÉ m'a permis de renforcer mes compétences en développement front-end et en conception Web. J'ai appris à créer un site responsive, structurer proprement un projet Web, utiliser Git et GitHub efficacement, respecter les standards du Web, améliorer l'ergonomie et l'accessibilité d'un site, et travailler de manière plus autonome sur un projet complet.
+                                </div>
+</div>
+<div class="sae-field">
+<span class="sae-field-label">Traces et preuves</span>
+<div class="sae-field-value">
+<div class="proof-item">
+  <div class="proof-item-header proof-item-link">
+    <a href="https://nitsuaf321.github.io/Projet-WEB/" target="_blank">https://nitsuaf321.github.io/Projet-WEB/</a>
+  </div>
+  <span class="proof-description-label">📝 Description</span>
+  <div class="proof-description-text">Voici un lien vers mon site qui montre le rendu final ainsi que les animations, dont la programmation m’a donné du fil à retordre. Malgré certains modèles disponibles sur Internet, il a toujours fallu tout adapter et placer correctement les éléments dans les bonnes balises afin d’obtenir le rendu souhaité.</div>
+</div>
+<div class="proof-item">
+  <div class="proof-item-header">
+    <img src="git-graph-sae14.png" alt="Historique Git - SAÉ 1.04" style="max-width:100%;border-radius:8px;"/>
+  </div>
+  <span class="proof-description-label">📝 Description</span>
+  <div class="proof-description-text">Voici l’historique des commits Git du projet, montrant les différentes branches ainsi que l’avancement du développement du site web.
+
+Justement, les branches sont ce qui m’a posé le plus de problèmes. Normalement, elles servent surtout dans un projet collaboratif, lorsque plusieurs personnes travaillent sur différentes machines sur un même projet. De mon côté, j’ai utilisé plusieurs machines différentes sans vraiment comprendre le fonctionnement des branches au départ, ce qui en a créé plusieurs inutilement.
+
+J’ai donc dû faire beaucoup de recherches afin de comprendre leur fonctionnement, supprimer les branches inutiles et conserver uniquement ma branche principale ("main"), c’est-à-dire la version globale et stable de mon projet.</div>
+</div>
+</div>
+</div>
+</div><div class="sae-tab-panel" id="sae104-autoeval">
+<div class="autoeval-section">
+<div class="autoeval-section-title">Évaluation des compétences</div>
+<div class="rating-row">
+<span class="rating-label">Maîtrise technique</span>
+<div class="rating-stars" data-key="sae104-maitrise" data-rating="3">
+<span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+</div>
+</div>
+<div class="rating-row">
+<span class="rating-label">Investissement personnel</span>
+<div class="rating-stars" data-key="sae104-investissement" data-rating="5">
+<span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+</div>
+</div>
+<div class="rating-row">
+<span class="rating-label">Travail en équipe</span>
+<div class="rating-stars" data-key="sae104-equipe" data-rating="5">
+<span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+</div>
+</div>
+<div class="rating-row">
+<span class="rating-label">Qualité du rendu</span>
+<div class="rating-stars" data-key="sae104-qualite" data-rating="4">
+<span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+</div>
+</div>
+</div>
+<div class="autoeval-section">
+<div class="autoeval-section-title">Analyse réflexive</div>
+<div class="sae-field">
+<span class="sae-field-label">Ce que j'ai bien réussi</span>
+<div class="sae-field-value">
+    Ce que j’ai bien réussi est la répartition du travail tout au long du projet. Cela m’a permis de réaliser le site dans les temps, sans contraintes de délai.
+</div>
+</div>
+<div class="sae-field">
+<span class="sae-field-label">Ce que je ferais différemment</span>
+<div class="sae-field-value">
+    Ce que je ferais différemment, c’est mieux préparer ce projet en regardant des tutoriels sur le type de langage à utiliser lors du projet.
+</div>
+</div>
+<div class="sae-field">
+<span class="sae-field-label">Axes de progression identifiés</span>
+<div class="sae-field-value">
+    L’axe de progression serait la préparation au projet afin d’améliorer au maximum ma maîtrise technique avant celui-ci, et ainsi être plus à l’aise avec le code.
+</div>
+</div>
+</div>
+</div></div>
+</div>
+</div>
+<!-- ─── Fin SAÉ S1 - N°4 ──────────────────────────────────── -->
+<!-- ─── SAÉ S1 - N°5 ──────────────────────────────────────── -->
+<div class="sae-accordion">
+<div class="accordion-header" onclick="toggleAccordion(this)">
+<div class="accordion-left">
+<span class="accordion-code">SAÉ 1.05</span>
+<span class="accordion-title">Traiter des données</span>
+</div>
+<span class="accordion-icon">▼</span>
+</div>
+<div class="accordion-content">
+<div class="accordion-body"><div class="sae-tabs">
+<button class="sae-tab-btn active" onclick="switchTab(this, 'sae105-presentation')">📋 Présentation</button>
+<button class="sae-tab-btn" onclick="switchTab(this, 'sae105-autoeval')">📊 Analyse &amp; Auto-évaluation</button>
+</div><div class="sae-tab-panel active" id="sae105-presentation">
+<div class="sae-field">
+<span class="sae-field-label">Contexte et objectifs</span>
+<div class="sae-field-value">
+                                    Dans le cadre de la SAÉ 1.05 « Traiter des données », l'objectif était de développer plusieurs outils en Python permettant d'exploiter les données du projet collaboratif OpenStreetMap. Le projet consistait à interroger différentes API afin de récupérer des informations géographiques, produire des statistiques et générer automatiquement des fiches aux formats Markdown et HTML.
+                                    Deux sous-projets principaux ont été réalisés : la création d'une fiche détaillée sur un point d'intérêt OpenStreetMap, et la récupération et l'analyse de données locales sur une zone géographique donnée.
+                                    Le projet devait également permettre la conversion automatique de fichiers Markdown vers HTML et être utilisable directement depuis le terminal via des scripts Python.
+                                </div>
+</div>
+<div class="sae-field">
+<span class="sae-field-label">Compétences mobilisées</span>
+<div class="competences-tags">
+<span class="competence-tag">Programmation en Python</span>
+<span class="competence-tag">Utilisation d'API REST et Overpass API</span>
+<span class="competence-tag">Traitement et manipulation de données JSON</span>
+<span class="competence-tag">Génération automatique de fichiers Markdown et HTML</span>
+<span class="competence-tag">Analyse et calcul de statistiques</span>
+<span class="competence-tag">Structuration et documentation de code</span>
+<span class="competence-tag">Bibliothèques Python (json, requests, markdown, etc.)</span>
+</div>
+</div>
+<div class="sae-field">
+<span class="sae-field-label">Apprentissages Critiques (AC)</span>
+<div class="sae-field-value">
+<strong>RT3 – Créer des outils et des applications informatiques pour les R&amp;T — Niveau 1 – S'intégrer dans un service informatique</strong><br/><br/>
+<strong>AC13.01</strong> Utiliser un système informatique et ses outils
+                                    → Utilisation de Python, du terminal et des bibliothèques de traitement de données.<br/><br/>
+<strong>AC13.02</strong> Lire, exécuter, corriger et modifier un programme
+                                    → Développement et correction de scripts Python.<br/><br/>
+<strong>AC13.03</strong> Traduire un algorithme, dans un langage et pour un environnement donné
+                                    → Création d'algorithmes pour traiter des données OpenStreetMap.<br/><br/>
+<strong>AC13.04</strong> Connaître l'architecture et les technologies d'un site Web
+                                    → Génération automatique de pages HTML à partir de données traitées.<br/><br/>
+<strong>AC13.05</strong> Choisir les mécanismes de gestion de données adaptés au développement de l'outil et argumenter ses choix
+                                    → Manipulation de fichiers JSON, Markdown et HTML.<br/><br/>
+<strong>AC13.06</strong> S'intégrer dans un environnement propice au développement et au travail collaboratif
+                                    → Organisation modulaire du projet Python et travail collaboratif.
+                                </div>
+</div>
+<div class="sae-field">
+<span class="sae-field-label">Situation et rôle</span>
+<div class="sae-field-value">
+                                    J'ai travaillé en tant que développeur Python chargé de concevoir un outil d'analyse et de génération de données à partir d'OpenStreetMap.
+                                    Mon rôle consistait à récupérer les données via les API, traiter les informations JSON, automatiser la génération des fiches, calculer des statistiques pertinentes, documenter et structurer le code, et produire un rendu clair et exploitable en HTML et Markdown.
+                                </div>
+</div>
+<div class="sae-field">
+<span class="sae-field-label">Démarche et actions</span>
+<div class="sae-field-value">
+                                    Étude du cahier des charges et des API OpenStreetMap — Création d'un module de conversion Markdown → HTML — Développement des fonctions permettant de récupérer les données d'un point d'intérêt OSM — Génération automatique de fiches Markdown et HTML — Utilisation de l'API Overpass pour récupérer des ensembles de données géographiques — Mise en place de calculs statistiques sur les données récupérées — Structuration des résultats dans des fichiers lisibles et organisés — Documentation des fonctions et tests des scripts Python — Vérification du bon fonctionnement depuis le terminal
+                                </div>
+</div>
+<div class="sae-field">
+<span class="sae-field-label">Déroulé du projet</span>
+<div class="sae-field-value">
+                                    Nous avons commencé par analyser le cahier des charges et faire des recherches sur la connexion des API avec Python, ainsi que sur le fonctionnement d’une API. Suite à cela, nous nous sommes réparti le travail et avons avancé chacun de notre côté pour finalement assembler le code final et rendre le travail.
+                                </div>
+</div>
+<div class="sae-field">
+<span class="sae-field-label">Résultats obtenus</span>
+<div class="sae-field-value">
+                                    Le projet final permet de générer automatiquement des fiches HTML et Markdown sur des points d'intérêt OpenStreetMap, de récupérer des données géographiques sur une zone précise, de produire des statistiques exploitables sur les données collectées, et d'utiliser les scripts directement en ligne de commande.
+                                    Les différentes fonctionnalités demandées dans le cahier des charges ont été implémentées et le code a été structuré en plusieurs modules réutilisables.
+                                </div>
+</div>
+<div class="sae-field">
+<span class="sae-field-label">Points forts</span>
+<div class="sae-field-value">
+                                    Bonne organisation du projet Python — Utilisation correcte des API OpenStreetMap et Overpass — Génération automatique de contenu HTML et Markdown — Calcul de statistiques pertinentes et exploitables — Code modulaire et documenté — Scripts fonctionnels directement depuis le terminal
+                                </div>
+</div>
+<div class="sae-field">
+<span class="sae-field-label">Difficultés rencontrées</span>
+<div class="sae-field-value">
+                                    Cette SAÉ nous a montré que l’utilisation d’API est compliquée, notamment lorsqu’il s’agit de récupérer les informations renvoyées par l’API et de les utiliser correctement. 
+                                </div>
+</div>
+<div class="sae-field">
+<span class="sae-field-label">Apprentissages et compétences développées</span>
+<div class="sae-field-value">
+                                    Cette SAÉ m'a permis de développer mes compétences en programmation Python et en traitement de données. J'ai appris à interroger des API Web, manipuler des données JSON, automatiser la génération de documents, structurer un projet Python en plusieurs fichiers, calculer des statistiques pertinentes, améliorer la qualité et la documentation du code, et travailler de manière plus autonome sur un projet technique complet.
+                                </div>
+</div>
+<div class="sae-field">
+<span class="sae-field-label">Traces et preuves</span>
+<div class="sae-field-value">
+<div class="proof-item">
+  <div class="proof-item-header proof-item-link">
+    <small><a href="Documents/Projet traitement de donnée SAE15.py" download="MARIE_PONSARD_SAE15.py">⬇ Télécharger le fichier .py</a></small>
+  </div>
+  <div class="proof-item-header">
+    <img src="code_python.png" alt="Extrait du code Python - SAÉ 1.05" style="max-width:100%;border-radius:8px;"/>
+  </div>
+  <span class="proof-description-label">📝 Description</span>
+  <div class="proof-description-text">Voici un extrait du code de mon projet Python illustrant la partie où l’on interroge une API à l’aide d’une clé d’API. Celle-ci nous renvoie un dictionnaire, c’est-à-dire une structure de données contenant des valeurs associées à des clés.
+
+La difficulté principale a été de comprendre comment communiquer avec l’API et exploiter correctement les données qu’elle renvoie, car nous n’utilisions qu’une partie des informations disponibles. Il fallait donc identifier le type de données reçu — ici un dictionnaire — puis extraire uniquement les éléments qui nous intéressaient. Cela peut sembler simple avec de l’expérience, mais c’était assez complexe à mettre en place lors d’une première utilisation d’API.
+</div>
+</div>
+</div>
+</div>
+</div><div class="sae-tab-panel" id="sae105-autoeval">
+<div class="autoeval-section">
+<div class="autoeval-section-title">Évaluation des compétences</div>
+<div class="rating-row">
+<span class="rating-label">Maîtrise technique</span>
+<div class="rating-stars" data-key="sae105-maitrise" data-rating="4">
+<span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+</div>
+</div>
+<div class="rating-row">
+<span class="rating-label">Investissement personnel</span>
+<div class="rating-stars" data-key="sae105-investissement" data-rating="5">
+<span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+</div>
+</div>
+<div class="rating-row">
+<span class="rating-label">Travail en équipe</span>
+<div class="rating-stars" data-key="sae105-equipe" data-rating="4">
+<span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+</div>
+</div>
+<div class="rating-row">
+<span class="rating-label">Qualité du rendu</span>
+<div class="rating-stars" data-key="sae105-qualite" data-rating="4">
+<span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+</div>
+</div>
+</div>
+<div class="autoeval-section">
+<div class="autoeval-section-title">Analyse réflexive</div>
+<div class="sae-field">
+<span class="sae-field-label">Ce que j'ai bien réussi</span>
+<div class="sae-field-value">
+    Ce que j’ai bien réussi : la compréhension directe et claire de l’attendu du projet, grâce à une bonne analyse du besoin.
+</div>
+</div>
+<div class="sae-field">
+<span class="sae-field-label">Ce que je ferais différemment</span>
+<div class="sae-field-value">
+    Ce que je ferais différemment, c’est mieux me préparer au projet en regardant davantage de tutoriels pour connecter son code Python à une API et en extraire les bonnes informations au bon endroit afin de bien les utiliser.
+</div>
+</div>
+<div class="sae-field">
+<span class="sae-field-label">Axes de progression identifiés</span>
+<div class="sae-field-value">
+   L’axe identifié est la qualité du rendu, car à cause du manque de maîtrise et de temps, nous avons rendu un projet non terminé : il manquait deux ou trois petites choses.
+</div>
+</div>
+</div>
+</div></div>
+</div>
+</div>
+<!-- ─── Fin SAÉ S1 - N°5 ──────────────────────────────────── -->
+</div>
+<div class="footer">
+<p class="footer-text">
+                Portfolio BUT Réseaux &amp; Télécommunications - Parcours Cybersécurité<br/>
+<strong>IUT Grand Ouest Normandie</strong>
+</p>
+</div>
+</div>
+<script>
+        // ── Toggle accordéon ──────────────────────────────────────
+        function toggleAccordion(header) {
+            const content = header.nextElementSibling;
+            document.querySelectorAll('.accordion-header').forEach(h => {
+                if (h !== header) {
+                    h.classList.remove('active');
+                    h.nextElementSibling.classList.remove('active');
+                }
+            });
+            header.classList.toggle('active');
+            content.classList.toggle('active');
+        }
+
+        // ── Onglets ───────────────────────────────────────────────
+        function switchTab(btn, panelId) {
+            const body = btn.closest('.accordion-body');
+            body.querySelectorAll('.sae-tab-btn').forEach(b => b.classList.remove('active'));
+            body.querySelectorAll('.sae-tab-panel').forEach(p => p.classList.remove('active'));
+            btn.classList.add('active');
+            document.getElementById(panelId).classList.add('active');
+        }
+
+        // ── Étoiles : lues depuis data-rating dans le HTML ─────────
+        // Pour modifier un niveau, changer data-rating="X" (0 à 5)
+        // directement dans le code HTML de la div.rating-stars concernée.
+        function applyRating(group) {
+            const val = parseInt(group.dataset.rating, 10) || 0;
+            Array.from(group.querySelectorAll('.star')).forEach((s, i) => {
+                s.classList.toggle('filled', i < val);
+            });
+        }
+
+        // Applique les niveaux définis en HTML au chargement de la page
+        document.querySelectorAll('.rating-stars').forEach(applyRating);
+
+    </script>
+</div></body>
+</html>

@@ -1,0 +1,58 @@
+SAÉ 1.01 – Se sensibiliser à l’hygiène informatique et à la cybersécurité
+Apprentissages Critiques (AC) concernés
+RT1 – Administrer les réseaux et l’Internet
+
+Niveau 1 – Assister l’administrateur du réseau
+
+AC11.02 Comprendre l’architecture et les fondements des systèmes numériques, les principes du codage de l’information, des communications et de l’Internet
+→ Compréhension du fonctionnement des systèmes numériques et des bases de la cybersécurité.
+AC11.04 Maîtriser les rôles et les principes fondamentaux des systèmes d’exploitation afin d’interagir avec ceux-ci pour la configuration et l’administration des réseaux et services fournis
+→ Utilisation d’environnements Linux et découverte des outils réseau et systèmes.
+AC11.05 Identifier les dysfonctionnements du réseau local et savoir les signaler
+→ Identification de vulnérabilités et compréhension des risques liés à la sécurité informatique.
+SAÉ 1.02 – S’initier aux réseaux informatiques
+Apprentissages Critiques (AC) concernés
+RT1 – Administrer les réseaux et l’Internet
+
+Niveau 1 – Assister l’administrateur du réseau
+
+AC11.01 Maîtriser les lois fondamentales de l’électricité afin d’intervenir sur des équipements de réseaux et télécommunications
+→ Compréhension du fonctionnement physique des équipements réseau.
+AC11.02 Comprendre l’architecture et les fondements des systèmes numériques, les principes du codage de l’information, des communications et de l’Internet
+→ Étude de l’architecture d’un réseau d’entreprise et des communications réseau.
+AC11.03 Configurer les fonctions de base du réseau local
+→ Configuration des VLANs, du routage, des switchs et des services réseau.
+AC11.04 Maîtriser les rôles et les principes fondamentaux des systèmes d’exploitation afin d’interagir avec ceux-ci pour la configuration et l’administration des réseaux et services fournis
+→ Administration d’un serveur Debian et configuration des services réseau.
+AC11.05 Identifier les dysfonctionnements du réseau local et savoir les signaler
+→ Réalisation de tests réseau et diagnostic des problèmes de connectivité.
+AC11.06 Installer un poste client, expliquer la procédure mise en place
+→ Installation et configuration des postes et machines virtuelles.
+SAÉ 1.04 – Se présenter sur Internet
+Apprentissages Critiques (AC) concernés
+RT3 – Créer des outils et des applications informatiques pour les R&T
+
+Niveau 1 – S’intégrer dans un service informatique
+
+AC13.01 Utiliser un système informatique et ses outils
+→ Utilisation d’éditeurs de code, GitHub et outils de validation Web.
+AC13.04 Connaître l’architecture et les technologies d’un site Web
+→ Développement d’un site Web responsive en HTML/CSS avec mise en page moderne.
+SAÉ 1.05 – Traiter des données
+Apprentissages Critiques (AC) concernés
+RT3 – Créer des outils et des applications informatiques pour les R&T
+
+Niveau 1 – S’intégrer dans un service informatique
+
+AC13.01 Utiliser un système informatique et ses outils
+→ Utilisation de Python, du terminal et des bibliothèques de traitement de données.
+AC13.02 Lire, exécuter, corriger et modifier un programme
+→ Développement et correction de scripts Python.
+AC13.03 Traduire un algorithme, dans un langage et pour un environnement donné
+→ Création d’algorithmes pour traiter des données OpenStreetMap.
+AC13.04 Connaître l’architecture et les technologies d’un site Web
+→ Génération automatique de pages HTML à partir de données traitées.
+AC13.05 Choisir les mécanismes de gestion de données adaptés au développement de l’outil et argumenter ses choix
+→ Manipulation de fichiers JSON, Markdown et HTML.
+AC13.06 S’intégrer dans un environnement propice au développement et au travail collaboratif
+→ Organisation modulaire du projet Python et travail collaboratif.

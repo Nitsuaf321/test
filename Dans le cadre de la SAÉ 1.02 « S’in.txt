@@ -1,0 +1,293 @@
+Dans le cadre de la SAÉ 1.02 « S’initier aux réseaux informatiques », l’objectif était de concevoir et mettre en œuvre une infrastructure réseau complète pour une entreprise fictive nommée Fibre&Company.
+L’entreprise souhaitait moderniser son réseau afin d’améliorer ses performances, sa sécurité et sa capacité à accueillir un plus grand nombre d’utilisateurs.
+
+Le projet consistait à configurer des équipements réseau (switchs, routeur, serveur Debian virtualisé), mettre en place des VLANs, des services réseau et différents mécanismes de sécurité, puis vérifier le bon fonctionnement de l’ensemble de l’infrastructure.
+
+Compétences mobilisées
+Configuration de réseaux locaux (LAN)
+Administration de switchs et routeurs Cisco
+Mise en œuvre de VLANs et routage inter-VLAN
+Administration système sous Linux/Debian
+Gestion des services réseau (DHCP, DNS, SMB, Apache, SSH)
+Virtualisation et gestion de machines virtuelles
+Sécurisation des équipements réseau
+Réalisation de tests réseau et validation technique
+Apprentissages Critiques (AC)
+Comprendre l’architecture d’un réseau d’entreprise
+Configurer des équipements réseau professionnels
+Mettre en œuvre des services réseau essentiels
+Segmenter un réseau avec des VLANs
+Sécuriser les accès et les infrastructures
+Administrer un serveur Linux en ligne de commande
+Tester et valider le fonctionnement d’un réseau
+Situation et rôle
+
+J’ai travaillé en tant qu’administrateur réseau junior chargé de déployer un prototype d’infrastructure réseau pour l’entreprise Fibre&Company.
+Mon rôle consistait à :
+
+configurer les équipements réseau ;
+mettre en place les VLANs et le routage ;
+installer et administrer le serveur Debian ;
+configurer les services réseau ;
+renforcer la sécurité de l’infrastructure ;
+réaliser des tests de fonctionnement et de performances.
+Démarche et actions
+Étude du cahier des charges et de l’architecture réseau demandée
+Création du plan d’adressage IPv4 et découpage des VLANs
+Configuration des switchs Cisco (VLAN, RSTP, agrégation de liens, DHCP)
+Mise en place du routage inter-VLAN et du routage vers Internet
+Installation d’une machine virtuelle Debian sans interface graphique
+Partitionnement et configuration des systèmes de fichiers Linux
+Création automatisée des comptes utilisateurs
+Installation et configuration des services :
+DHCP
+DNS (Bind9)
+partage SMB
+serveur web Apache2
+SSH sécurisé
+Mise en œuvre des mécanismes de sécurité réseau :
+désactivation de Telnet et HTTP
+sécurisation SSH
+VLAN natif pour ports inutilisés
+protections sur les switchs
+Réalisation des tests réseau et vérification des fonctionnalités
+Résultats obtenus
+
+Le projet a permis de mettre en place une infrastructure réseau fonctionnelle et sécurisée répondant aux besoins de l’entreprise fictive.
+Les VLANs, le routage inter-VLAN et les différents services réseau ont été configurés avec succès.
+Le serveur Debian a été correctement déployé et les mécanismes de sécurité ont renforcé la protection de l’infrastructure.
+Les différents tests réalisés ont permis de valider le bon fonctionnement du réseau et des services.
+
+Points forts
+Infrastructure réseau complète et cohérente
+Bonne segmentation du réseau avec les VLANs
+Mise en œuvre de services réseau variés
+Utilisation concrète des équipements Cisco
+Renforcement de la sécurité réseau
+Découverte approfondie de l’administration Linux
+Validation du projet grâce à des tests techniques
+Apprentissages et compétences développées
+
+Cette SAÉ m’a permis de développer mes compétences en réseaux et en administration système.
+J’ai appris à :
+
+configurer des switchs et routeurs Cisco ;
+mettre en place des VLANs et du routage ;
+administrer un serveur Debian ;
+configurer des services réseau professionnels ;
+sécuriser une infrastructure informatique ;
+réaliser des tests de connectivité et de performances ;
+travailler de manière plus autonome sur un projet technique complexe.
+
+
+
+Dans le cadre de la SAÉ 1.01 « Se sensibiliser à l’hygiène informatique et à la cybersécurité », l’objectif était de découvrir les bonnes pratiques de sécurité numérique et de comprendre les bases de la cybersécurité.
+Le projet reposait sur plusieurs activités : une autoformation via le MOOC de l’ANSSI, un travail de recherche en groupe sur une thématique liée à la cybersécurité, ainsi qu’une mise en pratique sous forme de TP et de défis type Capture The Flag (CTF).
+
+L’objectif final était d’être capable de sensibiliser des utilisateurs non spécialistes aux bonnes pratiques de sécurité informatique.
+
+Compétences mobilisées
+Sensibilisation à la cybersécurité
+Recherche et analyse d’informations techniques
+Travail collaboratif en groupe
+Présentation orale et communication technique
+Utilisation d’outils de sécurité informatique sous Linux/Debian
+Compréhension des mécanismes de sécurité réseau
+Veille et bonnes pratiques en hygiène numérique
+Apprentissages Critiques (AC)
+Comprendre les principes fondamentaux de la cybersécurité
+Identifier les risques liés à l’utilisation des services numériques
+Mettre en œuvre des pratiques de sécurité adaptées
+Utiliser des outils d’analyse et de sécurisation réseau
+Expliquer des notions techniques de manière claire
+Collaborer efficacement dans un travail de groupe
+Développer une culture générale en sécurité informatique
+Situation et rôle
+
+J’ai travaillé au sein d’un groupe chargé d’étudier une thématique liée à la cybersécurité (mots de passe, accès SSH ou découverte réseau selon le sujet choisi).
+Mon rôle consistait à :
+
+effectuer des recherches techniques ;
+tester différents outils de sécurité ;
+participer à la rédaction d’une notice collaborative ;
+préparer une présentation orale ;
+mettre en pratique certaines notions lors des TP et exercices CTF.
+Démarche et actions
+Suivi du MOOC de l’ANSSI sur l’hygiène numérique
+Réalisation des quiz et préparation du QCM final
+Constitution du groupe et répartition des tâches
+Recherche documentaire sur la thématique attribuée
+Expérimentation d’outils de cybersécurité sous Debian/Linux
+Rédaction d’un document technique collaboratif
+Préparation de supports de présentation (diapositives)
+Présentation orale du travail réalisé
+Participation aux exercices pratiques de type Capture The Flag
+Résultats obtenus
+
+Le projet a permis d’acquérir les bases de l’hygiène informatique et de la cybersécurité.
+Le groupe a produit une documentation technique claire et une présentation orale expliquant les recherches et expérimentations réalisées.
+Les activités pratiques ont permis de mieux comprendre les mécanismes de sécurité et les risques liés aux systèmes informatiques.
+
+Points forts
+Travail collaboratif efficace
+Découverte concrète des outils de cybersécurité
+Bonne compréhension des bonnes pratiques numériques
+Expérience pratique grâce aux exercices CTF
+Développement des compétences de communication orale
+Sensibilisation aux enjeux de sécurité informatique
+Apprentissages et compétences développées
+
+Cette SAÉ m’a permis de développer mes connaissances en cybersécurité et en hygiène numérique.
+J’ai appris à :
+
+adopter de bonnes pratiques de sécurité ;
+comprendre les risques informatiques courants ;
+utiliser des outils réseau et de sécurité sous Linux ;
+travailler efficacement en groupe ;
+présenter des informations techniques à l’oral ;
+réaliser des recherches techniques de manière autonome.
+
+Dans le cadre de la SAÉ 1.05 « Traiter des données », l’objectif était de développer plusieurs outils en Python permettant d’exploiter les données du projet collaboratif OpenStreetMap.
+Le projet consistait à interroger différentes API afin de récupérer des informations géographiques, produire des statistiques et générer automatiquement des fiches aux formats Markdown et HTML.
+
+Deux sous-projets principaux ont été réalisés :
+
+la création d’une fiche détaillée sur un point d’intérêt OpenStreetMap ;
+la récupération et l’analyse de données locales sur une zone géographique donnée.
+
+Le projet devait également permettre la conversion automatique de fichiers Markdown vers HTML et être utilisable directement depuis le terminal via des scripts Python.
+
+Compétences mobilisées
+Programmation en Python
+Utilisation d’API REST et Overpass API
+Traitement et manipulation de données JSON
+Génération automatique de fichiers Markdown et HTML
+Analyse et calcul de statistiques
+Structuration et documentation de code
+Utilisation des bibliothèques Python (json, requests, markdown, etc.)
+Gestion de projet en autonomie et travail collaboratif
+Apprentissages Critiques (AC)
+Interroger une API Web et exploiter ses données
+Manipuler des structures de données complexes en Python
+Produire des fichiers HTML à partir de données automatisées
+Concevoir des fonctions réutilisables et documentées
+Calculer et interpréter des statistiques pertinentes
+Organiser un projet Python en plusieurs modules
+Utiliser des scripts Python depuis le terminal
+Situation et rôle
+
+J’ai travaillé en tant que développeur Python chargé de concevoir un outil d’analyse et de génération de données à partir d’OpenStreetMap.
+Mon rôle consistait à :
+
+récupérer les données via les API ;
+traiter les informations JSON ;
+automatiser la génération des fiches ;
+calculer des statistiques pertinentes ;
+documenter et structurer le code ;
+produire un rendu clair et exploitable en HTML et Markdown.
+Démarche et actions
+Étude du cahier des charges et des API OpenStreetMap
+Création d’un module de conversion Markdown → HTML
+Développement des fonctions permettant de récupérer les données d’un point d’intérêt OSM
+Génération automatique de fiches Markdown et HTML
+Utilisation de l’API Overpass pour récupérer des ensembles de données géographiques
+Mise en place de calculs statistiques sur les données récupérées
+Structuration des résultats dans des fichiers lisibles et organisés
+Documentation des fonctions et tests des scripts Python
+Vérification du bon fonctionnement depuis le terminal
+Résultats obtenus
+
+Le projet final permet :
+
+de générer automatiquement des fiches HTML et Markdown sur des points d’intérêt OpenStreetMap ;
+de récupérer des données géographiques sur une zone précise ;
+de produire des statistiques exploitables sur les données collectées ;
+d’utiliser les scripts directement en ligne de commande.
+
+Les différentes fonctionnalités demandées dans le cahier des charges ont été implémentées et le code a été structuré en plusieurs modules réutilisables.
+
+Points forts
+Bonne organisation du projet Python
+Utilisation correcte des API OpenStreetMap et Overpass
+Génération automatique de contenu HTML et Markdown
+Calcul de statistiques pertinentes et exploitables
+Code modulaire et documenté
+Scripts fonctionnels directement depuis le terminal
+Apprentissages et compétences développées
+
+Cette SAÉ m’a permis de développer mes compétences en programmation Python et en traitement de données.
+J’ai appris à :
+
+interroger des API Web ;
+manipuler des données JSON ;
+automatiser la génération de documents ;
+structurer un projet Python en plusieurs fichiers ;
+calculer des statistiques pertinentes ;
+améliorer la qualité et la documentation du code ;
+travailler de manière plus autonome sur un projet technique complet.
+
+
+Dans le cadre de la SAÉ14, l’objectif était de concevoir et développer un site Web multipages en HTML et CSS. Le thème du site étant libre, cela permettait de créer un projet personnel autour d’un centre d’intérêt (sport, jeux vidéo, musique, voyage, etc.).
+Le projet devait respecter plusieurs contraintes techniques : création d’un site responsive, utilisation de Flexbox et/ou CSS Grid, respect des standards du Web (validation W3C), prise en compte de l’accessibilité numérique (WCAG 2.0 AA) et mise en ligne du projet via GitHub Pages.
+
+Compétences mobilisées
+Développement Web en HTML5 et CSS3
+Mise en page responsive avec Flexbox et CSS Grid
+Gestion de versions avec Git et GitHub
+Hébergement d’un site sur GitHub Pages
+Respect des normes du Web et de l’accessibilité
+Conception d’une interface utilisateur cohérente et ergonomique
+Organisation d’un projet Web multipages
+Apprentissages Critiques (AC)
+Structurer une page Web avec des balises HTML sémantiques
+Créer une mise en page moderne et responsive
+Appliquer une charte graphique cohérente
+Optimiser l’accessibilité et la lisibilité du contenu
+Utiliser Git pour suivre l’évolution d’un projet
+Publier un projet Web en ligne
+Produire un code valide et conforme aux standards du Web
+Situation et rôle
+
+J’ai travaillé en tant que développeur Web débutant chargé de concevoir et réaliser un site Web complet.
+Mon rôle consistait à :
+
+imaginer le design du site ;
+développer les différentes pages ;
+intégrer les contenus ;
+rendre le site responsive ;
+tester et corriger les erreurs HTML/CSS ;
+publier le projet sur GitHub Pages.
+Démarche et actions
+Choix du thème et définition de l’arborescence du site
+Réalisation des maquettes et choix de la charte graphique
+Création des pages HTML : accueil, contenu principal et page “À propos”
+Mise en forme avec CSS en utilisant Flexbox et CSS Grid
+Ajout d’animations CSS pour améliorer l’expérience utilisateur
+Adaptation du site aux différents formats d’écran (mobile, tablette, ordinateur)
+Vérification de la validité du code avec les outils W3C
+Mise en ligne du projet via GitHub Pages
+Gestion du projet avec plusieurs commits Git explicites
+Résultats obtenus
+
+Le projet final est un site Web multipages fonctionnel, responsive et accessible.
+Le site respecte les standards HTML/CSS, possède une navigation claire et une identité visuelle cohérente.
+Les différentes pages s’affichent correctement sur plusieurs appareils et le projet a été publié en ligne via GitHub Pages.
+
+Points forts
+Interface moderne et agréable visuellement
+Site responsive adapté à tous les écrans
+Utilisation correcte de Flexbox/CSS Grid
+Code organisé et structuré
+Respect des normes du Web et de l’accessibilité
+Gestion de projet avec GitHub et commits réguliers
+Apprentissages et compétences développées
+
+Cette SAÉ m’a permis de renforcer mes compétences en développement front-end et en conception Web.
+J’ai appris à :
+
+créer un site responsive ;
+structurer proprement un projet Web ;
+utiliser Git et GitHub efficacement ;
+respecter les standards du Web ;
+améliorer l’ergonomie et l’accessibilité d’un site ;
+travailler de manière plus autonome sur un projet complet.
